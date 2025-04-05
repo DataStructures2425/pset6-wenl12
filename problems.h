@@ -36,9 +36,7 @@ bool isCycle(vector<vector<int>> &graph, vector<bool> &visited, int V){
     return false;
 }
 
-vector<int> v;
-
-vector<int> DFSMat(vector<vector<int>> &graph, vector<bool> &completed, int a, int V){
+vector<int> DFSMat(vector<vector<int>> &graph, vector<bool> &completed, int a, int V, vector<int> &v){
     if (!completed[a]){
         completed[a] = true;
         v.push_back(a);
@@ -49,7 +47,7 @@ vector<int> DFSMat(vector<vector<int>> &graph, vector<bool> &completed, int a, i
                     if (graph[i][j] && !completed[j]) legal = false;
                 }
                 //cout << legal << endl;
-                if (legal) DFSMat(graph, completed, i, V);
+                if (legal) DFSMat(graph, completed, i, V, v);
             }
         }
     }
@@ -62,6 +60,7 @@ vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites)
 {
     vector<vector<int>> graph(numCourses, vector<int>(numCourses, 0));
     vector<bool> completed(numCourses, false);
+    vector<int> v;
     vector<int> v2;
     v2.push_back(-1);
     if (prerequisites[0].empty()) return {0};
@@ -88,7 +87,7 @@ vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites)
     //cout << "f" << f << endl;
     vector<bool> visited(numCourses, false);
     if (isCycle(graph, visited, numCourses)) return v2;
-    v = DFSMat(graph, completed, f, numCourses);
+    v = DFSMat(graph, completed, f, numCourses, v);
     //cout << v.size() << endl;
     //for (int g : v) cout << "g" << g << endl;
     if (v.size() == numCourses) return v;
