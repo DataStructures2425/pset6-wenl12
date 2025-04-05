@@ -1,0 +1,19 @@
+{
+    "files.associations": {
+        "__split_buffer": "cpp",
+        "deque": "cpp",
+        "queue": "cpp",
+        "string": "cpp",
+        "string_view": "cpp",
+        "vector": "cpp",
+        "array": "cpp",
+        "iostream": "cpp",
+        "stack": "cpp",
+        "ostream": "cpp",
+        "unordered_map": "cpp",
+        "iosfwd": "cpp",
+        "iterator": "cpp",
+        "algorithm": "cpp",
+        "type_traits": "cpp"
+    }
+}
